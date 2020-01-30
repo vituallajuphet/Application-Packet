@@ -20,7 +20,7 @@
                         <li><a href="javascript:;">Certified Nursing Assistant Skills Checklist</a></li>
                         <li><a href="javascript:;">Bethel Staffing Application</a></li>
                         <li><a href="javascript:;">FCRA Authorization to Obtain a Consumer Report</a></li>
-                        <li><a href="javascript:;">Bethel HIPAA Policy</a></li>
+                        <li><a href="<?=base_url("employee/form/bethel_hippa_policy")?>">Bethel HIPAA Policy</a></li>
                         <li><a href="<?=base_url("employee/form/employee_attendance_form")?>">Attendance Policy</a></li>
                     </ul>
                 </li>

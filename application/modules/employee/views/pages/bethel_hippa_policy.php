@@ -8,23 +8,23 @@
         <!-- ============================================================== -->
         <div class="row page-titles">
             <div class="col-md-12 align-self-center">
-                <h3 class="text-themecolor">Nurses Knowledge and Skills Required Form</h3>
+                <h3 class="text-themecolor">Bethel HIPAA Policy Form</h3>
             </div>
-        
+            
+
         </div>
-         <hr>
+        <hr>
         <!-- startt -->
         <div class="row">
-                <div class="col-12">
-                        <div class="card">
-                        <div class="card-body">
-                            <?php $this->load->view("forms/nurse_knowledge_frm"); ?>
+                    <div class="col-12">
+                         <div class="card">
+                            <div class="card-body">
+                                <?php $this->load->view("forms/bethel_hippa_policy_frm"); ?>
+                            </div>
                         </div>
-                    </div>
-                </div>   
+                   </div>             
         </div>
         <!-- end content -->
-
     </div>
     <!-- ============================================================== -->
     <!-- End Container fluid  -->

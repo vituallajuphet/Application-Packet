@@ -28,6 +28,14 @@ class Employee extends MY_Controller {
 			$data["has_header"] = "includes/employee_form_header";
 			$data["has_footer"] = "includes/signature_footer";
 		}
+		else if($formname== "nurse_knowledge_form"){
+			$data["has_header"] = "includes/employee_form_header";
+			$data["has_footer"] = "includes/nurse_knowledge_footer";
+		}
+		else if($formname== "bethel_hippa_policy"){
+			$data["has_header"] = "includes/employee_form_header";
+			$data["has_footer"] = "includes/bethel_hippa_policy_footer";
+		}
 		// $data["files"] =$this->get_all_files();
 		$this->load_employee_page("pages/$formname", $data, "footer_index");
 	}
@@ -145,7 +153,7 @@ class Employee extends MY_Controller {
 		echo json_encode($res);
 	}
 
-	public function submit_employee_attendance(){
+	public function submit_api_form(){
 		$post = $this->input->post();
 		$response  = array("code"=>204);
 		if(!empty($post)){
@@ -157,21 +165,53 @@ class Employee extends MY_Controller {
 			$file_name = "signature-".time(). '.png';
 			$file = $path . $file_name;
 			file_put_contents($file, $image_base64);
-			$res  = array("code"=>200);
 
-			$frmdata= array(
-				"signature" => $file_name,
-				"employee_name" => $post["fullname"],
-				"date" => $post["date"]
-			);
-			$set = array(
-				"user_id" => my_id(),
-				"form_name"=> "Attendance Policy Form",
-				"form_type"=> $post["form_type"],
-				"form_data"=> json_encode($frmdata),
-				"form_submitted"=> date("Y/m/d") ,
-				"status" => 1,
-			);
+			if($post["form_type"]== "employee_attendance_frm"){
+				$frmdata= array(	
+					"signature" => $file_name,
+					"employee_name" => $post["fullname"],
+					"date" => $post["date"]
+				);
+				$set = array(
+					"user_id" => my_id(),
+					"form_name"=> "Attendance Policy Form",
+					"form_type"=> $post["form_type"],
+					"form_data"=> json_encode($frmdata),
+					"form_submitted"=> date("Y/m/d") ,
+					"status" => 1,
+				);
+			}
+			else if($post["form_type"]== "nurse_knowledge_form"){
+				$frmdata= array(	
+					"signature" => $file_name,
+					"employee_name" => $post["fullname"],
+					"date" => $post["date"]
+				);
+				$set = array(
+					"user_id" => my_id(),
+					"form_name"=> "Nurses Knowledge and Skills Required Form",
+					"form_type"=> $post["form_type"],
+					"form_data"=> json_encode($frmdata),
+					"form_submitted"=> date("Y/m/d") ,
+					"status" => 1,
+				);
+			}
+			else if($post["form_type"]== "bethel_hippa_policy"){
+				$frmdata= array(	
+					"signature" => $file_name,
+					"employee_name" => $post["fullname"],
+					"date" => $post["date"]
+				);
+				$set = array(
+					"user_id" => my_id(),
+					"form_name"=> "Bethel HIPAA Policy Form",
+					"form_type"=> $post["form_type"],
+					"form_data"=> json_encode($frmdata),
+					"form_submitted"=> date("Y/m/d") ,
+					"status" => 1,
+				);
+			}
+
 			$this->MY_Model->insert('tbl_onlineforms', $set);
 			$response  = array("code"=>200);
 		}

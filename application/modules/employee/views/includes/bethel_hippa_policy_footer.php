@@ -9,10 +9,9 @@
 
         $('#sig').click(function(e) {
             e.preventDefault();
-            console.log(sig);
             sig.signature('clear');
+            alert(1)
         });
-        
          $('#btn-clear').click(function(e) {
             e.preventDefault();
             console.log(sig);
@@ -45,7 +44,7 @@
                     let fdata = new FormData();
                     let canvass = $("#canvas_img").val();
                     fdata.append("canvas_img", canvass)
-                    fdata.append("form_type", "employee_attendance_frm")
+                    fdata.append("form_type", "bethel_hippa_policy")
                     fdata.append("fullname", this.fullname)
                     fdata.append("date", this.date)
                     axios.post(`${base_url}employee/submit_api_form`, fdata).then(res =>{

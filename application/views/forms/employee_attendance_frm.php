@@ -43,7 +43,7 @@
                     <label style="display:block;" class="control-label">Signature</label>
                     <div id="sig"></div>
                         <p style="clear: both;">
-                            <button id="clear">Clear</button> 
+                            <button type="button" id="btn-clear">Clear</button> 
                         </p>
                     </div>
                     <input type="hidden" required name="canvas_img" id="canvas_img">

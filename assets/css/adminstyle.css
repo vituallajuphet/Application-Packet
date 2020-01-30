@@ -50,5 +50,9 @@
 .sidebar-nav { background: #0c3c63; }
 
 .comp{font-weight: bold;}
+.onlineFrm h5{font-size: 14px; font-weight: bold;}
 
 ul li{margin-bottom: 6px;}
+
+.onlineFrm ul{padding-left: 5px;margin-top:15px;}
+.onlineFrm ul li:marker{display: inline-block;}

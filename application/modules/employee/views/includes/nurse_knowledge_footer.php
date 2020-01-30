@@ -12,12 +12,13 @@
             console.log(sig);
             sig.signature('clear');
         });
-        
-         $('#btn-clear').click(function(e) {
+        $('#btn-clear').click(function(e) {
             e.preventDefault();
             console.log(sig);
             sig.signature('clear');
         });
+
+        
 
         $('#sig canvas').click(function(e) {
             hasSign = true;
@@ -45,7 +46,7 @@
                     let fdata = new FormData();
                     let canvass = $("#canvas_img").val();
                     fdata.append("canvas_img", canvass)
-                    fdata.append("form_type", "employee_attendance_frm")
+                    fdata.append("form_type", "nurse_knowledge_form")
                     fdata.append("fullname", this.fullname)
                     fdata.append("date", this.date)
                     axios.post(`${base_url}employee/submit_api_form`, fdata).then(res =>{
