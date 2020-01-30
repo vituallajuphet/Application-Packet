@@ -36,6 +36,12 @@
           <link href="<?=base_url()?>/assets/css/colors/default.css" id="theme" rel="stylesheet">
           <link href="<?=base_url()?>/assets/css/adminstyle.css" rel="stylesheet">
            <link href="<?=base_url()?>assets/module/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+
+           <?php 
+               if(!empty($has_header)){
+                  $this->load->view($has_header);  
+               }
+           ?>
      </head>
       <body class="fix-header fix-sidebar card-no-border">
             <!-- ============================================================== -->

@@ -24,8 +24,44 @@ class Employee extends MY_Controller {
 	public function form($formname){
 		$data["title"] ="Form - $formname";
 		$data["pagename"] ="form";
+		if($formname== "employee_attendance_form"){
+			$data["has_header"] = "includes/employee_form_header";
+			$data["has_footer"] = "includes/signature_footer";
+		}
 		// $data["files"] =$this->get_all_files();
 		$this->load_employee_page("pages/$formname", $data, "footer_index");
+	}
+
+	public function submit_form($formtype = ""){
+		if(!empty($formtype)){
+			$post = $this->input->post();
+			if(!empty($post)){
+				if($formtype == "hipa_b"){
+					$frmdata= array(
+						"agreement" => 1,
+						"applicant_name" => $post["fullname"],
+						"date" => $post["date"],
+					);
+					$set = array(
+						"user_id" => my_id(),
+						"form_name"=> "Hepatitis B Vaccine Declination Form",
+						"form_type"=> $formtype,
+						"form_data"=> json_encode($frmdata),
+						"form_submitted"=> date("Y/m/d") ,
+						"status" => 1,
+					);
+					$this->MY_Model->insert('tbl_onlineforms', $set);
+					show_swal("success", "Submitted successfully!");
+				}
+			}
+			else{
+				show_swal("error", "There is no form selected!");
+			}
+			
+		}else{
+			show_swal("error", "There's an error in submiting a form!");
+		}
+		redirect(base_url("employee"));
 	}
 
 	public function downloads ($file_id){
@@ -60,6 +96,8 @@ class Employee extends MY_Controller {
 		// return $res;
 	}
 	
+	
+
 	public function upload_file(){
 		$post = $this->input->post();
 		// echo '<pre>';
@@ -105,6 +143,39 @@ class Employee extends MY_Controller {
 		$par["join"] = array("tbl_users" => "tbl_users.user_id = tbl_files.user_id");
 		$res = $this->MY_Model->getRows('tbl_files', $par, "obj");
 		echo json_encode($res);
+	}
+
+	public function submit_employee_attendance(){
+		$post = $this->input->post();
+		$response  = array("code"=>204);
+		if(!empty($post)){
+			$path = "./assets/images/signatures/";
+			$image_parts = explode(";base64,", $post['canvas_img']);
+			$image_type_aux = explode("image/", $image_parts[0]);
+			$image_type = $image_type_aux[1];
+			$image_base64 = base64_decode($image_parts[1]);
+			$file_name = "signature-".time(). '.png';
+			$file = $path . $file_name;
+			file_put_contents($file, $image_base64);
+			$res  = array("code"=>200);
+
+			$frmdata= array(
+				"signature" => $file_name,
+				"employee_name" => $post["fullname"],
+				"date" => $post["date"]
+			);
+			$set = array(
+				"user_id" => my_id(),
+				"form_name"=> "Attendance Policy Form",
+				"form_type"=> $post["form_type"],
+				"form_data"=> json_encode($frmdata),
+				"form_submitted"=> date("Y/m/d") ,
+				"status" => 1,
+			);
+			$this->MY_Model->insert('tbl_onlineforms', $set);
+			$response  = array("code"=>200);
+		}
+		echo json_encode($response);
 	}
 }
 ?>
