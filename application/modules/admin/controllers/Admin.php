@@ -38,6 +38,32 @@ class Admin extends MY_Controller {
 		$this->load_page("pages/employee_files", $data, "includes/employee_files_footer");
 	}
 
+	public function onlineforms (){
+		$data["title"] ="Online Forms";
+		$data["pagename"] ="onlineforms";
+		// $data["has_footer"] ="includes/employee_files_footer";
+		// $data["files"] = $this->get_all_files();
+		$this->load_page("pages/onlineforms", $data, "includes/onlineforms_footer");
+	}
+	public function view_form ($form_id){
+		if(empty($form_id)){
+			redirect(base_url("admin"));
+		}else{
+			
+			$data["title"] ="View Online Forms";
+			$data["pagename"] ="view_form";
+			$par["select"] = "*";
+			$par["where"] = array( "status" => 1, "onlineform_id" => $form_id);
+			$data["frmdata"] = $this->MY_Model->getRows('tbl_onlineforms', $par, "obj");
+
+			$set = array( "is_read" => 1, );
+			$where = array("onlineform_id" =>$form_id);
+			$this->MY_Model->update('tbl_onlineforms', $set, $where);
+
+			$this->load_page("pages/view_form", $data, "includes/view_form_footer");
+		}		
+	}
+
 	public function logs (){
 		$data["title"] ="Download Logs";
 		$data["pagename"] ="downloadlogs";
@@ -300,15 +326,22 @@ class Admin extends MY_Controller {
 	}
 
 
-	public function get_chart_data (){
-		
-	}
+	
 
 	public function api_get_files(){
 		$res = [];
 		$par["where"] = array("tbl_files.file_status" => 1);
 		$par["join"] = array("tbl_users" => "tbl_users.user_id = tbl_files.user_id");
+	
 		$res = $this->MY_Model->getRows('tbl_files', $par, "obj");
+		echo json_encode($res);
+	}
+
+	public function api_get_onlineforms (){
+		$res = [];
+		$par["where"] = array("tbl_onlineforms.status" => 1);
+		$par["join"] = array("tbl_users" => "tbl_users.user_id = tbl_onlineforms.user_id");
+		$res = $this->MY_Model->getRows('tbl_onlineforms', $par, "obj");
 		echo json_encode($res);
 	}
 
@@ -316,6 +349,14 @@ class Admin extends MY_Controller {
 		$par["where"] = array("tbl_files.file_status" => 1);
 		$par["join"] = array("tbl_users" => "tbl_users.user_id = tbl_files.user_id");
 		$res = $this->MY_Model->getRows('tbl_files', $par, "obj");
+		return $res;
+	}
+
+	private function get_onlineforms(){
+		$res = [];
+		$par["where"] = array("tbl_onlineforms.status" => 1);
+		$par["join"] = array("tbl_users" => "tbl_users.user_id = tbl_onlineforms.user_id");
+		$res = $this->MY_Model->getRows('tbl_onlineforms', $par, "obj");
 		return $res;
 	}
 
@@ -330,6 +371,18 @@ class Admin extends MY_Controller {
 		}
 		echo json_encode($response);
 		
+	}
+
+	public function api_delete_formdata (){
+		$onlineform_id = $this->input->post("onlineform_id");
+		$response = array("code" => 204, "Something wrong in deleting a file");
+		if(!empty($onlineform_id)){
+			$set = array("status" => 0);
+			$where= array("onlineform_id" => $onlineform_id);
+			$this->MY_Model->update('tbl_onlineforms',$set, $where);
+			$response = array("code" => 200, 'data' =>$this->get_onlineforms() );
+		}
+		echo json_encode($response);
 	}
 }
 ?>

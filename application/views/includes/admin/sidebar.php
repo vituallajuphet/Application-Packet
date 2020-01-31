@@ -1,5 +1,3 @@
-
-
 <aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div class="scroll-sidebar">
@@ -11,6 +9,7 @@
              
                 </li>
                  <li> <a class="waves-effect " href="<?=base_url("admin/employee_files")?>" aria-expanded="false"><i class="icon-Files"></i><span class="hide-menu">Employee Files</span></a> </li>
+                 <li> <a class="waves-effect " href="<?=base_url("admin/onlineforms")?>" aria-expanded="false"><i class="icon-File-HorizontalText"></i><span class="hide-menu">Online Form Panel</span></a> </li>
                  
                 <!-- <li> <a class="has-arrow waves-effect" href="javascript:;" aria-expanded="false"><i class="icon-El-Castillo"></i><span class="hide-menu">Multi level dd</span></a>
                     <ul aria-expanded="false" class="collapse">

@@ -61,6 +61,7 @@ class Employee extends MY_Controller {
 						"form_data"=> json_encode($frmdata),
 						"form_submitted"=> date("Y/m/d") ,
 						"status" => 1,
+						"is_read" => 0,
 					);
 					$this->MY_Model->insert('tbl_onlineforms', $set);
 					show_swal("success", "Submitted successfully!");
@@ -183,6 +184,7 @@ class Employee extends MY_Controller {
 					"form_data"=> json_encode($frmdata),
 					"form_submitted"=> date("Y/m/d") ,
 					"status" => 1,
+					"is_read" => 0,
 				);
 			}
 			else if($post["form_type"]== "nurse_knowledge_form"){
@@ -198,6 +200,7 @@ class Employee extends MY_Controller {
 					"form_data"=> json_encode($frmdata),
 					"form_submitted"=> date("Y/m/d") ,
 					"status" => 1,
+					"is_read" => 0,
 				);
 			}
 			else if($post["form_type"]== "bethel_hippa_policy"){
@@ -213,6 +216,7 @@ class Employee extends MY_Controller {
 					"form_data"=> json_encode($frmdata),
 					"form_submitted"=> date("Y/m/d") ,
 					"status" => 1,
+					"is_read" => 0,
 				);
 			}
 			
@@ -238,6 +242,7 @@ class Employee extends MY_Controller {
 						"form_data"=> json_encode($fdata),
 						"form_submitted"=> date("Y/m/d") ,
 						"status" => 1,
+						"is_read" => 0,
 					);
 			   }
 			   $this->MY_Model->insert('tbl_onlineforms', $set);

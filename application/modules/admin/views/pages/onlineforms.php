@@ -8,7 +8,7 @@
         <!-- ============================================================== -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-themecolor">Employee Files</h3>
+                <h3 class="text-themecolor">Onlineform Panel</h3>
             </div>
             <div class="col-md-7 align-self-center text-right d-none d-md-block">
                 <!-- <button type="button" class="btn btn-info" @click="show_file_modal()"><i class="fa fa-plus-circle"></i> Add File</button> -->
@@ -23,24 +23,22 @@
                                     <table id="myTable" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>File Title</th>
-                                                <th>Uploaded By</th>
-                                                <th>File Type</th>
-                                                <th>Date Uploaded</th>
+                                                <th>Onlineform ID</th>
+                                                <th>Form Name</th>
+                                                <th>Submitted By</th>
+                                                <th>Date Submitted</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="file in files" :key="file.file_id">
-                                                <td>{{file.file_title}}</td>
-                                                <td>{{file.first_name}}</td>
-                                                <td>{{file.file_type}}</td>
-                                                <td>{{file.uploaded_date}}</td>
-                                                <td class="text-center actionsbtn">
-                                                    <a :href="b_url+'assets/uploads/'+file.file_name" target="_blank" class="text-success" style="font-size:14px;"><i class="fas fa-eye"></i></a>
-                                                    <a download :href="b_url+'assets/uploads/'+file.file_name" ><i class="fas fa-download"></i></a>
-                                                    <!-- <a href="javascript:;" @click="showDelete(file.file_id)"><i class="fas fa-trash"> </a> -->
-                                                    <a  href="javascript:;" style="color:red" @click="showDelete(file.file_id)"><i class="fas fa-trash"></i></a>
+                                            <tr v-for="frm in onlineforms" :class="frm.is_read == 0 ? 'fbold' : ''">
+                                                <td>{{frm.onlineform_id}}</td>
+                                                <td>{{frm.form_name}}</td>
+                                                <td>{{frm.first_name}}</td>
+                                                <td>{{frm.form_submitted}}</td>
+                                               <td class="text-center actionsbtn">
+                                                    <a :href="b_url+'admin/view_form/'+frm.onlineform_id" title="View" class="text-success" style="font-size:14px;"><i class="fas fa-eye"></i></a>
+                                                    <a  href="javascript:;" title="Delete" style="color:red" @click="showDelete(frm.onlineform_id)"><i class="fas fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>

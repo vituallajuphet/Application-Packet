@@ -50,7 +50,7 @@
      <div class="preloader">
           <div class="loader">
                <div class="loader__figure"></div>
-               <p class="loader__label">Better Life Home Care</p>
+               <p class="loader__label"> Bethel Group</p>
           </div>
      </div>
        

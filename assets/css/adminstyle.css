@@ -56,3 +56,10 @@ ul li{margin-bottom: 6px;}
 
 .onlineFrm ul{padding-left: 5px;margin-top:15px;}
 .onlineFrm ul li:marker{display: inline-block;}
+
+.template_form{border: 1px solid #dbdbdb; padding: 30px 15px;}
+.template_form .fbold{font-weight: bold;}
+.template_form .p_val{color:#222;}
+
+
+#myTable .fbold{font-weight: bold;}
