@@ -1,4 +1,3 @@
-
 <form action="#" @submit.prevent="submitForm()" method="post">
      <h4>Nurses Knowledge and Skills Required:</h4>
     <div class="row">

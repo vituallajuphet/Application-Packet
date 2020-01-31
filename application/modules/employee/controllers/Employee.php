@@ -36,6 +36,10 @@ class Employee extends MY_Controller {
 			$data["has_header"] = "includes/employee_form_header";
 			$data["has_footer"] = "includes/bethel_hippa_policy_footer";
 		}
+		else if($formname== "per_diem_pay_form"){
+			$data["has_header"] = "includes/employee_form_header";
+			$data["has_footer"] = "includes/per_diem_pay_footer";
+		}
 		// $data["files"] =$this->get_all_files();
 		$this->load_employee_page("pages/$formname", $data, "footer_index");
 	}
@@ -211,11 +215,39 @@ class Employee extends MY_Controller {
 					"status" => 1,
 				);
 			}
+			
 
 			$this->MY_Model->insert('tbl_onlineforms', $set);
 			$response  = array("code"=>200);
+			
+			
 		}
 		echo json_encode($response);
 	}
+
+	public function api_submit_new_form(){	
+		$response  = array("code"=>204);
+		if(!empty($this->input->post())){
+			  $post = $this->input->post();
+			  $fdata = json_decode( $post["fdata"]);
+			   if($post["form_type"]== "per_diem_pay_form"){
+					$set = array(
+						"user_id" => my_id(),
+						"form_name"=> "Per Diem Pay Agreement Form",
+						"form_type"=> $post["form_type"],
+						"form_data"=> json_encode($fdata),
+						"form_submitted"=> date("Y/m/d") ,
+						"status" => 1,
+					);
+			   }
+			   $this->MY_Model->insert('tbl_onlineforms', $set);
+			  $response  = array("code"=>200);
+		      echo json_encode($response);
+		}
+		
+		
+		
+	}
+	
 }
 ?>

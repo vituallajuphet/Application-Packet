@@ -14,7 +14,7 @@
                         <li><a href="<?=base_url("employee/form/nurse_knowledge_form")?>">Nurses Knowledge and Skills Required</a></li>
                         <li><a href="<?= base_url("employee/form/hepatitis_declination_form")?>">Hepatitis B Vaccine Declination Form</a></li>
                         <li><a href="javascript:;">Direct Deposit Authorization</a></li>
-                        <li><a href="javascript:;">Per Diem Pay Agreement</a></li>
+                        <li><a href="<?=base_url("employee/form/per_diem_pay_form")?>">Per Diem Pay Agreement</a></li>
                         <li><a href="javascript:;">CORI Acknowledgement Form</a></li>
                         <li><a href="javascript:;">Form 1-9</a></li>
                         <li><a href="javascript:;">Certified Nursing Assistant Skills Checklist</a></li>
