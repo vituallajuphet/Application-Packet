@@ -55,6 +55,8 @@
             
             <div class="col-md-12">
                 <div class="form-group">
+                    <hr>
+                     <div id="form_recaptcha" class="required mt-4 mb-3"></div>
                     <button class="btn btn-success" type="submit">Submit</button>
                 </div>
             </div> 

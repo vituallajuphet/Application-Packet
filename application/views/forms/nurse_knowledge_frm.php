@@ -50,11 +50,13 @@
                         </p>
                     </div>
                     <input type="hidden" required name="canvas_img" id="canvas_img">
+                    <hr>
             </div> 
 
             
             <div class="col-md-12">
                 <div class="form-group">
+                    <div id="form_recaptcha" class="required mt-4 mb-4"></div>
                     <button class="btn btn-success" type="submit">Submit</button>
                 </div>
             </div> 

@@ -1,4 +1,4 @@
-<form action="<?= base_url("employee/submit_form/hipa_b")?>" method="post">
+<form id="hepa_form" action="<?= base_url("employee/submit_form/hipa_b")?>" method="post">
      <h4>HEPATITIS B VACCINE DECLINATION / DOCUMENTATION</h4>
     <div class="row">
             <div class="col-md-12">
@@ -25,6 +25,7 @@
             </div> 
             <div class="col-md-12">
                 <div class="form-group">
+                 <div id="form_recaptcha" class="required mt-4 mb-4"></div>
                     <button class="btn btn-success">Submit</button>
                 </div>
             </div> 

@@ -19,6 +19,7 @@ class Admin extends MY_Controller {
 		$data["pagename"] ="dashboard";
 		$data["active_users"] =$this->get_all_users();
 		$data["allfiles"] =$this->get_files();
+		$data["allonlineforms"] =$this->get_onlineforms();
 		$data["alldownloads"] =$this->get_download_logs(true);
 		$this->load_page("index", $data, "admin_footer");
 	}
@@ -351,6 +352,7 @@ class Admin extends MY_Controller {
 		$res = $this->MY_Model->getRows('tbl_files', $par, "obj");
 		return $res;
 	}
+
 
 	private function get_onlineforms(){
 		$res = [];

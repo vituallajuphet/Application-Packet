@@ -27,7 +27,9 @@
              mounted(){
                this.get_files().then((res)=>{
                     $('#myTable').DataTable();
-            }) 
+                }) 
+                
              }
+
          })
 </script>

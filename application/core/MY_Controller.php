@@ -14,7 +14,17 @@ class MY_Controller extends MX_Controller {
 					redirect(base_url("employee"));
 				}
 			}
-		} else {
+		} 
+		else if($route == "api"){
+			if(!$this->session->has_userdata('logged_in')){
+				$resp = array( "code" => 204, "message" =>"User is not login" );
+				echo json_encode($resp);
+			}else{
+				
+			}
+		}
+		else
+		{
 			if(!$this->session->has_userdata('logged_in')){
 				redirect(base_url('login'));
 			}else{

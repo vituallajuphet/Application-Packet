@@ -40,6 +40,23 @@ class Employee extends MY_Controller {
 			$data["has_header"] = "includes/employee_form_header";
 			$data["has_footer"] = "includes/per_diem_pay_footer";
 		}
+		else if($formname== "bethel_staffing"){
+			$data["has_header"] = "includes/employee_form_header";
+			$data["has_footer"] = "includes/bethel_staffing_footer";
+		}
+		else if($formname== "certified_nursing_checklist"){
+			$data["has_header"] = "includes/employee_form_header";
+			$data["has_footer"] = "includes/certified_nursing_checklist_footer";
+		}
+		else if($formname== "fcra_authorization"){
+			$data["has_header"] = "includes/employee_form_header";
+			$data["has_footer"] = "includes/fcra_authorization_footer";
+		}
+		else if($formname== "hepatitis_declination_form"){
+			$data["has_header"] = "includes/employee_form_header";
+			$data["has_footer"] = "includes/hepatitis_declination_footer";
+		}
+		
 		// $data["files"] =$this->get_all_files();
 		$this->load_employee_page("pages/$formname", $data, "footer_index");
 	}
@@ -65,6 +82,55 @@ class Employee extends MY_Controller {
 					);
 					$this->MY_Model->insert('tbl_onlineforms', $set);
 					show_swal("success", "Submitted successfully!");
+				}
+				else if($formtype == "bethel_staffing"){
+					$set = array(
+						"user_id" => my_id(),
+						"form_name"=> "Bethel Staffing Application",
+						"form_type"=> $formtype,
+						"form_data"=> json_encode($post),
+						"form_submitted"=> date("Y/m/d") ,
+						"status" => 1,
+						"is_read" => 0,
+					);
+					$this->MY_Model->insert('tbl_onlineforms', $set);
+					show_swal("success", "Submitted successfully!");
+				}
+				else if($formtype == "certified_nursing_checklist"){
+					if(empty($post["g-recaptcha-response"])){
+						show_swal("error", "Invalid recaptha");
+					}else{
+						$set = array(
+							"user_id" => my_id(),
+							"form_name"=> "Certified Nursing Assistant Skills Checklist",
+							"form_type"=> $formtype,
+							"form_data"=> json_encode($post),
+							"form_submitted"=> date("Y/m/d") ,
+							"status" => 1,
+							"is_read" => 0,
+						);
+						$this->MY_Model->insert('tbl_onlineforms', $set);
+						show_swal("success", "Submitted successfully!");
+					}
+					
+				}
+				else if($formtype == "fcra_authorization"){
+					if(empty($post["g-recaptcha-response"])){
+						show_swal("error", "Invalid recaptha");
+					}else{
+						$set = array(
+							"user_id" => my_id(),
+							"form_name"=> "FCRA Authorization to Obtain a Consumer Report Form",
+							"form_type"=> $formtype,
+							"form_data"=> json_encode($post),
+							"form_submitted"=> date("Y/m/d") ,
+							"status" => 1,
+							"is_read" => 0,
+						);
+						$this->MY_Model->insert('tbl_onlineforms', $set);
+						show_swal("success", "Submitted successfully!");
+					}
+					
 				}
 			}
 			else{
@@ -219,6 +285,7 @@ class Employee extends MY_Controller {
 					"is_read" => 0,
 				);
 			}
+			
 			
 
 			$this->MY_Model->insert('tbl_onlineforms', $set);

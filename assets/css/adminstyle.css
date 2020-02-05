@@ -63,3 +63,16 @@ ul li{margin-bottom: 6px;}
 
 
 #myTable .fbold{font-weight: bold;}
+.text-muted{color: #66666a !important;}
+
+.form-table tr td input[type="radio"]{}
+.form-table tr td label {display: inline-block; vertical-align: top; position: relative; top: -4px; right: -6px; font-size: 16px; font-weight: bold;margin-bottom: 0;}
+
+.form-table{font-size: 15px;}
+
+.req{color: red;}
+
+.dsp-name{font-weight: bold;border-bottom: 1px solid gray;}
+.f-name{border: none;  border-bottom: 1px gray solid;}
+
+.btn-def{background-color: #0c3c63!important;}

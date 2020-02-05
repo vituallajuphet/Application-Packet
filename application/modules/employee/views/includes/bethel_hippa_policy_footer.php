@@ -1,5 +1,14 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="<?=base_url()?>assets/js/signature.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<script type="text/javascript">
+  var onloadCallback = function() {
+    grecaptcha.render('form_recaptcha', {
+      'sitekey' : '6LftnpIUAAAAAGSTlCV2ZtZxiKevQ7SrM5baht7p'
+    });
+  };
+</script>
+
 <script>
     var hasSign = false;
  $(document).ready(function(){
@@ -38,7 +47,13 @@
              },
              methods:{
                 submitForm(){
-                  if(hasSign){
+                    var gcap = grecaptcha.getResponse();
+                    if(gcap.length == 0){
+                        Swal.fire({ icon: 'error', text: 'Invalid recaptcha', })
+                        return;
+                    }
+
+                  if(hasSign){                    
                     var canvas=  document.getElementsByTagName("canvas");
                     document.getElementById('canvas_img').value = canvas[0].toDataURL('image/png');
                     let fdata = new FormData();

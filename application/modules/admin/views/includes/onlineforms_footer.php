@@ -1,6 +1,5 @@
     <script src="<?=base_url()?>assets/js/vue.min.js"></script>
     <script src="<?=base_url()?>assets/js/axios.js"></script>
-   
     <script src="<?=base_url()?>assets/module/jquery/jquery.min.js"></script>
      <script src="<?=base_url()?>assets/js/formvalidate.js"></script>
     <!-- Bootstrap popper Core JavaScript -->
@@ -24,7 +23,6 @@
     <script src="<?=base_url()?>assets/module/sweetalert2/sweet-alert.init.js"></script>
     <script src="<?=base_url()?>assets/module/styleswitcher/jQuery.style.switcher.js"></script>
     <script>
-
          const base_url ="<?= base_url()?>";
          var vueapp = new Vue({
              el:"#vueapp",
@@ -72,7 +70,7 @@
              mounted(){
                this.get_files().then((res)=>{
                    let tbl = $('#myTable').DataTable();
-                   tbl.order( [ 3, 'desc' ] ).draw();
+                   tbl.order( [ 0, 'desc' ] ).draw();
               })
              }
          })
@@ -88,8 +86,6 @@
           <?php
         }
     ?>
-
-
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->

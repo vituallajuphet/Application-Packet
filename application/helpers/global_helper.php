@@ -170,4 +170,20 @@
 			return $ci->session->userdata('user_id');
 	    }
 	}
+	if(!function_exists('is_authorize')) {
+		function is_authorize($type){
+			$ci =& get_instance();
+			$userType = $ci->session->userdata("user_type");
+			if($userType == $type){
+				return true;
+			}else{
+				$res = array(
+					"code"=> 401,
+					"message" => "You are not authorize to access data..."
+				);
+				echo json($res);
+				exit;
+			}
+	    }
+	}
 ?>
